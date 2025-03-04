@@ -1,0 +1,11 @@
+menu menubar,channel {
+  Mock
+  .Enable:/set %mock 1 | set %mocknick $$?="Enter Nickname:" | set %mockchan $$?="Enter Channel (include #):"
+  .Disable:/unset %mock | unset %mocknick | unset %mockchan
+}
+
+on *:text:*:#:{
+  if (%mock && # == %mockchan && $nick == %mocknick) {
+    msg # $1-
+  }
+}
